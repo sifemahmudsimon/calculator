@@ -1,42 +1,55 @@
 import './App.css';
-import React from 'react';
-import axios from 'axios';
+import React,{useState} from 'react';
 
-class App extends React.Component {
+function App(){
+  const[value,setvalue] = useState('');
+  return(
+    <div className='container'>
+      <div className='calculator'>
+        <form>
+          <div className='display'>
+            <input type='text' value={value}/>
+          </div>
+          
+          <div>
+            <input type='button' value='AC'className='AC' onClick={e=>setvalue('')}/>
+            <input type='button' value='DC'onClick={e=>setvalue(value.slice(0,-1))}/>
+            <input type='button' value='.' onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='/' onClick={e=>setvalue(value+e.target.value)}/>
+          </div>
 
-  state = {
-    advice: ''
-  }
-  componentDidMount(){
-    this.fetchAdvice();
-  }
+          <div>
+            <input type='button' value='7' onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='8' onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='9' onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='*' onClick={e=>setvalue(value+e.target.value)}/>
+          </div>
 
-  fetchAdvice = () => {
-    axios.get('https://api.adviceslip.com/advice')
-        .then((response)=>{
-          const {advice} = response.data.slip
-          this.setState({advice: advice})
-        })
-        .catch((error)=>{
-          console.log(error);
-        })
-  }
+          <div>
+            <input type='button' value='4' onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='5' onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='6' onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='+' onClick={e=>setvalue(value+e.target.value)}/>
+          </div>
 
-  render(){
-    return(
-      <div className='app'>
-        <div className='card'>
-          <h1 className='heading'>
-            {this.state.advice}
-          </h1>
-          <button className='gmadv' onClick={this.fetchAdvice}>
-            GIVE ME ADVICE!
-          </button>
-        </div>
+          <div>
+            <input type='button' value='1' onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='2' onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='3' onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='-'/>
+          </div>
 
+          <div>
+            <input type='button' value='00'onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='0' onClick={e=>setvalue(value+e.target.value)}/>
+            <input type='button' value='=' className='equal' onClick={e=> setvalue(eval(value))}/>
+          </div>
+
+        </form>
       </div>
-    )
-  }
+    </div>
+  )
 }
+
 
 export default App;

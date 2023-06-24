@@ -1,72 +1,59 @@
-#root,html,body {
-  margin: 0;
-  padding:0;
+.container{
+  width: 100%;
   height: 100vh;
-  box-sizing: border-box;
-}
-
-.app{
-  height: 100%;
-  background:url('./images/BackImage.jpg');
-  background-size: cover;
-  background-position: center;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  background: linear-gradient(140deg,rgb(45, 45, 45),rgb(191, 191, 191));
 }
 
-.card{
-  background-color: whitesmoke;
-  width: 40%;
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  border-radius: 20px;
-  padding: 2%;
-  box-shadow: 10px 10px 30px #34343488;
-
-}
-
-.heading {
-  display: flex;
-  align-items: center;
-  height: 500px;
-  font-family: 'League Spartan', sans-serif;
+.calculator{
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
 }
 
 /* button */
-.gmadv {
-  display: inline-block;
-  padding: 2%;
+form input{
+  border: none;
+  width: 60px;
+  height: 60px;
+  padding: 16px;
   font-size: 18px;
   text-align: center;
   text-decoration: none;
-  font-weight: bold;
-  color: grey;
   background-color: #f0f0f0;
   border: none;
   border-radius: 10px;
   box-shadow: 6px 6px 12px #d9d9d9, -6px -6px 12px #ffffff;
   cursor: pointer;
+  margin: 5px;
+  outline: 0;
 }
 
-.gmadv:hover {
+form input[type="button"]:hover{
   box-shadow: 4px 4px 8px #d9d9d9, -4px -4px 8px #ffffff;
 }
 
-.gmadv:active {
+form input[type="button"]:active{
   box-shadow: inset 4px 4px 8px #d9d9d9, inset -4px -4px 8px #ffffff;
 }
 
+form .display{
+  display: flex;
+  justify-content: flex-end;
+  margin: 5px 0px 20px 0px;
+}
+form .display input {
+  text-align: right;
+  flex: 1;
+  font-size: 40px;
+  padding: 5px 10px;
+  background-color: gray;
+  color: white;
+}
 
-@media only screen and(max-width: 600px){
-  .card {
-    width: 80%;
-    height: 30%;
-  }
+form input.equal{
+  width: 130px;
 }
 
