@@ -14,5 +14,5 @@
   
 
   .button-wrapper:active {
-    box-shadow: inset 4px 4px 8px #242424, inset -4px -4px 8px #949494;
+    box-shadow: inset 4px 4px 8px #242424, inset -4px -4px 8px #5a5a5a;
   }
