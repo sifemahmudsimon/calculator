@@ -1,53 +1,72 @@
+import { useState } from 'react';
 import './App.css';
-import React,{useState} from 'react';
+import Button from './components/Button';
+import Input from './components/Input';
+import * as math from 'mathjs';
 
 function App(){
-  const[value,setvalue] = useState('');
+
+  const [text,setText] = useState("");
+  const [result,setResult] = useState("");
+
+  const addToText = (val) =>{
+    setText((text)=>[...text,val + ""]);
+  };
+
+  const calculateResult = () => {
+    const input = text.join("")
+    setResult(math.evaluate(input))
+    setText("")
+  }
+
+  const resetInput = () => {
+    setText("")
+    setResult("")
+  }
+  const buttonColor = "#f2a33c";
+
   return(
     <div className='container'>
-      <div className='calculator'>
-        <form>
-          <div className='display'>
-            <input type='text' value={value}/>
+      <div className='App'>
+        <div className='heading'>
+          <h3>
+            C A L C U L A T O R
+          </h3>
+        </div>
+        <div className='calc-wrapper'>
+          <Input text={text} result={result}/>
+          <div className='row'>
+            <Button symbol='7' handleClick={addToText}/>
+            <Button symbol='8' handleClick={addToText}/>
+            <Button symbol='9' handleClick={addToText}/>
+            <Button symbol='/' color={buttonColor} handleClick={addToText}/>
+          </div>
+          <div className='row'>
+            <Button symbol='4' handleClick={addToText}/>
+            <Button symbol='5' handleClick={addToText}/>
+            <Button symbol='6' handleClick={addToText}/>
+            <Button symbol='*' color={buttonColor} handleClick={addToText}/>
+          </div>
+          <div className='row'>
+            <Button symbol='1' handleClick={addToText}/>
+            <Button symbol='2' handleClick={addToText}/>
+            <Button symbol='3' handleClick={addToText}/>
+            <Button symbol='+' color={buttonColor} handleClick={addToText}/>
+          </div>
+          <div className='row'>
+            <Button symbol='0' handleClick={addToText}/>
+            <Button symbol='.' handleClick={addToText}/>
+            <Button symbol='=' handleClick={calculateResult}/>
+            <Button symbol='-' color={buttonColor} handleClick={addToText}/>
+          </div>
+          <div>
+            <Button symbol='Clear' color="#202020" handleClick={resetInput}/>
           </div>
           
-          <div>
-            <input type='button' value='AC'className='AC' onClick={e=>setvalue('')}/>
-            <input type='button' value='DC'onClick={e=>setvalue(value.slice(0,-1))}/>
-            <input type='button' value='.' onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='/' onClick={e=>setvalue(value+e.target.value)}/>
-          </div>
-
-          <div>
-            <input type='button' value='7' onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='8' onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='9' onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='*' onClick={e=>setvalue(value+e.target.value)}/>
-          </div>
-
-          <div>
-            <input type='button' value='4' onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='5' onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='6' onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='+' onClick={e=>setvalue(value+e.target.value)}/>
-          </div>
-
-          <div>
-            <input type='button' value='1' onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='2' onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='3' onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='-'/>
-          </div>
-
-          <div>
-            <input type='button' value='00'onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='0' onClick={e=>setvalue(value+e.target.value)}/>
-            <input type='button' value='=' className='equal' onClick={e=> setvalue(eval(value))}/>
-          </div>
-
-        </form>
+        </div>
       </div>
     </div>
+      
   )
 }
 
